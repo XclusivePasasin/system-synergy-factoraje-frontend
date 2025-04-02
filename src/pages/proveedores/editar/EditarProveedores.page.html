@@ -1,0 +1,87 @@
+<!-- Botón para regresar a lista de solicitudes -->
+<div class="detalle-solicitud-header-buttom" *ngIf="back">
+  <button pButton icon="pi pi-arrow-left" label="Regresar a Proveedores"
+    class="p-button-rounded p-button-info no-bg-blue" (click)="regresarALaLista()"></button>
+</div>
+
+<div class="configuraciones-container">
+  <h2 class="title">{{edit ? 'Editar Proveedor' : 'Crear Proveedor'}}</h2>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="id">ID</label>
+      <input pInputText id="id" [(ngModel)]="id" class="full-width" type="number" placeholder="Ej.1" />
+    </div>
+    <div class="form-group">
+      <label for="razon_social">Razón Social</label>
+      <input pInputText id="razon_social" [(ngModel)]="razon_social" class="full-width" type="text"
+        placeholder="Ej.Clobi Technologies S.A. de C.V." />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nrc">NRC</label>
+      <input pInputText id="nrc" [(ngModel)]="nrc" class="full-width" type="text" placeholder="Ej. 123456-7" />
+    </div>
+    <div class="form-group">
+      <label for="nit">NIT</label>
+      <input pInputText id="nit" [(ngModel)]="nit" class="full-width" type="text" placeholder="Ej. 0614-290390-101-3" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombre_contacto">Nombre Contacto</label>
+      <input pInputText id="nombre_contacto" [(ngModel)]="nombre_contacto" class="full-width" type="text"
+        placeholder="Ej. Juan Pérez" />
+    </div>
+    <div class="form-group">
+      <label for="cuenta_bancaria">Cuenta Bancaria</label>
+      <input pInputText id="cuenta_bancaria" [(ngModel)]="cuenta_bancaria" class="full-width" type="text"
+        placeholder="Ej. 000123456789" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input pInputText id="telefono" [(ngModel)]="telefono" class="full-width" type="text"
+        placeholder="Ej. 7777-7777" />
+    </div>
+    <div class="form-group">
+      <label for="correo">Correo</label>
+      <input pInputText id="correo" [(ngModel)]="correo_electronico" class="full-width" type="email"
+        placeholder="Ej. correo@ejemplo.com" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="minimo">Mínimo</label>
+      <input pInputText id="minimo" [(ngModel)]="minimo" class="full-width" type="number" placeholder="Ej. 1000" />
+    </div>
+    <div class="form-group">
+      <label for="maximo">Máximo</label>
+      <input pInputText id="maximo" [(ngModel)]="maximo" class="full-width" type="number" placeholder="Ej. 5000" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="banco">Banco</label>
+      <p-dropdown [options]="bancos" [(ngModel)]="codigo_banco" optionValue="codigo" optionLabel="nombre"
+        placeholder="Seleccione un banco" [showClear]="true" class="full-width" >
+      </p-dropdown>
+    </div>
+    <div class="form-group">
+      <label for="codigo_banco">Código Banco</label>
+      <input pInputText id="codigo_banco" [(ngModel)]="codigo_banco" class="full-width" type="text" readonly
+        placeholder="Código se autocompleta">
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button pButton label="Guardar" class="btn-modificar" [loading]="loading" (click)="modificarInfo()"></button>
+  </div>
+</div>

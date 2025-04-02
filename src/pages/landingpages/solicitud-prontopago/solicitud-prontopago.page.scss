@@ -1,0 +1,200 @@
+.container {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.invoice-table {
+  margin-top: 20px;
+  width: 100%;
+}
+
+
+
+.solicitar-btn {
+  background-color: #00b2b2;
+  color: #ffffff;
+  border: none;
+  height: 40px;
+  width: 200px;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field label {
+  font-size: 18px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.field input {
+  width: 80%;
+  padding: 5px;
+  box-sizing: border-box;
+  height: 40px;
+}
+
+
+
+.custom-dialog {
+  max-width: 90%;
+  border: 6px solid red !important;
+}
+
+input {
+  border-radius: 15px;
+}
+
+::ng-deep .p-datatable-thead>tr>th {
+  background-color: #e6e6e6;
+  color: #333;
+  font-weight: bold;
+}
+
+.detalle-cesion {
+  text-align: left;
+  margin: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.proveedor-name {
+  margin: 70px 0 70px 0;
+
+  span {
+    font-weight: normal;
+  }
+}
+
+.terms-check {
+  margin: 50px 0 15px 0;
+  font-weight: 650;
+  color: gray;
+}
+
+.terms-p {
+  margin-top: 70px;
+  font-size: 12px;
+  color: #adadad;
+  line-height: 15px;
+}
+
+.btn-close {
+  position: absolute;
+  right: -7px;
+  height: 50px;
+  width: 50px;
+  background-color: #73B16B;
+  color: #fff;
+  top: -7px;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.datos-solicitante {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-aceptar-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  button {
+    width: 200px;
+    border-radius: 20px;
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+  }
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+.error-card {
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 20px;
+}
+
+.error-card h1 {
+  color: #dc3545;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.error-card p {
+  color: #333333;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.error-card .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.error-card .btn:hover {
+  background-color: #0056b3;
+}
+
+
+.container img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.container h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.container p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #00b2b2;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #00b2b2;
+}

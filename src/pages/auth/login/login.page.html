@@ -1,0 +1,77 @@
+<div  class="login-container">
+  <div class="left-section">
+    <img src="assets/img/clobi-logo.svg" alt="Clobi Technologies" class="logo" />
+    <p>Development by <strong>Clobi Technologies</strong></p>
+  </div>
+  <div *ngIf="!changePassword" class="right-section">
+    <h2>Sistema de Pronto Pago a Proveedores</h2>
+    <form class="login-form" (ngSubmit)="login()">
+      <small *ngIf="messageError.length > 0" class="p-error">
+        {{messageError}}
+        <br><br>
+      </small>
+      <div class="p-field">
+        <label for="name">Correo electrónico</label>
+        <input id="name" type="email" pInputText [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Correo" required />
+        <small *ngIf="isFormInvalid && !isValidEmail(email)" class="p-error">
+          Ingresa un correo electrónico válido.
+        </small>
+      </div>
+
+
+      <div class="p-field">
+        <label for="password">Contraseña</label>
+        <div class="password-container">
+        <input  id="password" [type]="passwordVisible ? 'text' : 'password'" pInputText [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  placeholder="Min. 6 caracteres" required />
+        <i
+        class="pi"
+        [ngClass]="passwordVisible ? 'pi-eye-slash' : 'pi-eye'"
+        (click)="togglePasswordVisibility()"
+        style="cursor: pointer; margin-left: -30px;"
+        ></i>
+        <small *ngIf="isFormInvalid && !password" class="p-error">
+          Ingresa tu contraseña.
+        </small>
+        </div>
+      </div>
+
+      <div class="p-field-checkbox">
+        <p-checkbox binary="true"></p-checkbox>
+        <label for="remember"> Mantener sesión conectada</label>
+      </div>
+      <br>
+      <button pButton type="submit" label="Iniciar sesión" class="login-button"></button>
+    </form>
+  </div>
+  <!-- En el caso que se requiera restablecer la contrasenia -->
+  <div *ngIf="changePassword" class="right-section">
+    <h2>Synergy Factoraje</h2>
+    <form class="login-form" (ngSubmit)="restablecer()">
+      <small *ngIf="messageError.length > 0" class="p-error">
+        {{messageError}}
+        <br><br>
+      </small>
+
+      <div class="p-field">
+        <label for="password2">Nueva contraseña</label>
+        <input (change)="validatePassword()"  id="password1" type="password" pInputText [(ngModel)]="newPasswordF" [ngModelOptions]="{standalone: true}"  placeholder="Min. 6 caracteres" required minlength="6" />
+        <small *ngIf="isFormInvalid && !password" class="p-error">
+          Ingresa tu contraseña.
+        </small>
+      </div>
+
+      <div class="p-field">
+        <label for="password2">Confirmar contraseña</label>
+        <input (change)="validatePassword()"  id="password2" type="password" pInputText [(ngModel)]="newPasswordS" [ngModelOptions]="{standalone: true}"  placeholder="Min. 6 caracteres" required required minlength="6" />
+        <small *ngIf="isFormInvalid && !password" class="p-error">
+          Ingresa tu contraseña.
+        </small>
+      </div>
+
+      <br>
+      <button pButton type="submit" label="Restablecer contraseña" class="login-button"></button>
+    </form>
+  </div>
+</div>
+
+

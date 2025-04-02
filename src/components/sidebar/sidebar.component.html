@@ -1,0 +1,58 @@
+<div class="sidebar" [class.hidden]="!visible">
+  <ng-container *ngIf="visible">
+    <!-- Encabezado -->
+    <div class="sidebar-header">
+      <a [routerLink]="['/home']" class="logo-link">
+        <div class="logo-circle">
+          <span>S</span>
+        </div>
+        <span class="logo-text">SINERGY</span>
+      </a>
+
+      <!-- Botón para cerrar el sidebar en pantallas pequeñas -->
+      <button class="close-btn" (click)="closeSidebar()">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+
+    <!-- Contenedor principal del sidebar -->
+    <div class="sidebar-content">
+      <!-- Menú -->
+      <ul class="sidebar-menu">
+        <ng-container *ngFor="let item of permisos">
+          <li *ngIf="shouldShowMenu(item)">
+            <!-- Menú Padre -->
+            <a 
+              (click)="toggleMenu(item)" 
+              [routerLink]="!item.children?.length ? item.menu.path : (null)" 
+              routerLinkActive="active"
+            >
+              <i [class]="item.menu.icon" style="margin-right: 15px;"></i> {{ item.menu.menu }}
+              <i 
+                *ngIf="item.children?.length" 
+                class="pi pi-chevron-right dropdown-icon" 
+                [class.open]="item.isOpen"
+              ></i>
+            </a>
+      
+            <ul class="submenu" *ngIf="item.isOpen">
+              <ng-container *ngFor="let subItem of item.children">
+                <li *ngIf="subItem.menu.descripcion == 'MENU' || subItem.menu.descripcion == 'SUBMENU'">
+                  <a [routerLink]="subItem.menu.path || null" routerLinkActive="active">
+                    <i [class]="subItem.menu.icon"></i> {{ subItem.menu.menu }}
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+      
+    </div>
+
+    <!-- Pie del Sidebar -->
+    <div class="sidebar-footer">
+      <img src="assets/img/clobi.svg" alt="Clobi Technologies" class="logo" />
+    </div>
+  </ng-container>
+</div>

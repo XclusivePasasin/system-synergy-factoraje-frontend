@@ -1,0 +1,107 @@
+<div class="usuarios-content">
+  <!-- Contenedor de Filtros -->
+  <div class="filtros-container">
+    <!-- Componente de filtros con sólo búsqueda.
+         El evento (onSearch) filtra globalmente la tabla usando la referencia #dt2 -->
+    <app-filtros [onlySearch]="true" (onSearch)="dt3.filterGlobal($event, 'contains')"></app-filtros>
+
+    <!-- Botón para crear nuevo usuario -->
+    <div class="new" (click)="navigateTo('admin/proveedores/crear')">
+      <i class="pi pi-plus"></i>
+      <span>Crear nuevo Proveedor</span>
+    </div>
+  </div>
+
+  <!-- Contenedor de la tabla -->
+  <div class="card tabla-content">
+    <!-- p-table de PrimeNG con scroll vertical, paginación y filtros globales -->
+    <p-table #dt3 [value]="proveedores" [scrollable]="true" scrollHeight="60vh" dataKey="id" [rows]="10"
+      [loading]="loading" [paginator]="true" [globalFilterFields]="['razon_social', 'nrc', 'nit']"
+      [tableStyle]="{ 'min-width': '75rem' }">
+
+      <!-- Encabezado de la tabla -->
+      <ng-template pTemplate="header">
+        <tr class="custom-header-row">
+          <th>Razon Social</th>
+          <th>NRC</th>
+          <th>NIT</th>
+          <th>Nombre Contacto</th>
+          <th>Cuenta Bancaria</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>Minimo</th>
+          <th>Máximo</th>
+          <th>Banco</th>
+          <th>Código banco</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+
+      <!-- Cuerpo de la tabla -->
+      <ng-template pTemplate="body" let-proveedores>
+        <tr>
+          <!-- Columna Nombre (en mayúsculas) -->
+          <td style="text-transform: none;">{{ proveedores.razon_social }}</td>
+          <td style="text-transform: none;">{{ proveedores.nrc }}</td>
+          <td style="text-transform: none;">{{ proveedores.nit }}</td>
+          <td style="text-transform: none;">{{ proveedores.nombre_contacto }}</td>
+          <td style="text-transform: none;">{{ proveedores.cuenta_bancaria }}</td>
+          <td style="text-transform: none;">{{ proveedores.telefono }}</td>
+          <td style="text-transform: none;">{{ proveedores.correo_electronico }}</td>
+          <td style="text-transform: none;">{{ proveedores.min_factoring }}</td>
+          <td style="text-transform: none;">{{ proveedores.max_factoring }}</td>
+          <td style="text-transform: none;">{{ proveedores.banco }}</td>
+          <td style="text-transform: none;">{{ proveedores.codigo_banco }}</td>
+
+          <!-- Columna de acciones con botones -->
+          <td class="buttons-actions">
+            <!-- Botón para mostrar si el usuario está ACTIVO o INACTIVO -->
+            <!-- <button *appHasAction="'Activar inactivar usuario'" pButton type="button"
+              [class]="usuario.activo == 1 ? 'button-info-activo' : 'button-info-inactivo'"
+              [disabled]="usuario.id.toString() === currentUserId || loadingUserId === usuario.id.toString()">
+              <i *ngIf="loadingUserId === usuario.id.toString()" class="pi pi-spin pi-spinner"
+                style="margin-right: 0.5rem;"></i>
+              {{usuario.activo == 1 ? 'ACTIVO' : 'INACTIVO'}}
+            </button> -->
+
+            <!-- Botones de Editar, Eliminar, Accesos -->
+            <button pButton type="button" class="button-info" (click)="editarProveedor(proveedores)"
+              [disabled]="proveedores.id.toString() === currentUserId || loadingUserId === proveedores.id.toString()">
+              Editar
+            </button>
+            <button pButton type="button" class="button-info" (click)="ejecutarAccion(proveedores)"
+              [disabled]="proveedores.id.toString() === currentUserId || loadingUserId === proveedores.id.toString()">
+              <i *ngIf="loadingUserId === proveedores.id.toString()" class="pi pi-spin pi-spinner"
+                style="margin-right: 0.5rem;"></i>
+              Eliminar
+            </button>
+
+          </td>
+        </tr>
+      </ng-template>
+
+      <!-- Mensaje cuando no hay datos -->
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8" class="text-center" style="text-transform: uppercase;">No hay registros disponibles.</td>
+        </tr>
+      </ng-template>
+
+      <!-- Paginador: parte izquierda -->
+      <ng-template pTemplate="paginatorleft">
+        <div class="total-records">{{ proveedores.length }} registros</div>
+      </ng-template>
+
+    </p-table>
+    <!-- Confirmación de acción (Eliminar usuario) -->
+    <p-dialog [header]="'Eliminar Proveedor'" [(visible)]="modalAccionVisible"
+      [style]="{width: '30vw'}">
+      <p>¿Está seguro de que desea ejecutar esta acción?</p>
+      <p-footer>
+        <button pButton [loading]="loading" label="Sí" icon="pi pi-check" class="p-button-success" 
+        (click)="deleteProveedor()"></button>
+        <button pButton label="No" icon="pi pi-times" class="p-button-danger" (click)="modalAccionVisible = false;"></button>
+      </p-footer>
+    </p-dialog>
+  </div>
+</div>

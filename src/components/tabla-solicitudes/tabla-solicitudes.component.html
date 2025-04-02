@@ -1,0 +1,102 @@
+<div class="card tabla-content">
+  <p-table #dt2 [value]="solicitudes" [scrollable]="true" scrollHeight="60vh" dataKey="id" [rows]="10"
+    [loading]="loading" [paginator]="true" [(selection)]="selectedSolicitudes"
+    [globalFilterFields]="['factura.proveedor.razon_social', 'factura.proveedor.correo_electronico', 'factura.proveedor.nrc', 'nombre_cliente', 'factura.proveedor.telefono', 'factura.monto', 'interes']"
+    [tableStyle]="{ 'min-width': '75rem' }" [ngClass]="{'aprobadas-estilos': tieneSolicitudesAprobadas() || tieneSolicitudesDenegadas()}">
+
+    <!-- Encabezados con Filtros -->
+    <ng-template pTemplate="header">
+      <tr class="custom-header-row">
+        <th>Cliente</th>
+        <th>Correo</th>
+        <th>NRC Emisor</th>
+        <th>Encargado</th>
+        <th>Teléfono</th>
+        <th>Monto</th>
+        <th>Interés</th>
+        <th *ngIf="tieneSolicitudesAprobadas() || tieneSolicitudesDenegadas()">Estado</th>
+        <th *ngIf="tieneSolicitudesAprobadas()">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox> <!-- Checkbox para seleccionar todo -->
+          <span class="title-checkbox">Seleccionar todo</span> <!-- Texto "Seleccionar todo" -->
+        </th>
+        <th>Acciones</th>
+      </tr>
+      <tr class="custom-header-row">
+        <th>
+          <p-columnFilter type="text" field="factura.proveedor.razon_social" [showButtons]="false" [showMenu]="false"
+            [showApplyButton]="false" [showClearButton]="false" [showOperator]="false" [matchMode]="'contains'"
+            placeholder="Buscar por cliente" ariaLabel="Filtrar Cliente"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="factura.proveedor.correo_electronico" [showButtons]="false"
+            [showMenu]="false" [showApplyButton]="false" [showClearButton]="false" [showOperator]="false"
+            [matchMode]="'contains'" placeholder="Buscar por correo" ariaLabel="Filtrar Correo"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="factura.proveedor.nrc" [showButtons]="false" [showMenu]="false"
+            [showApplyButton]="false" [showClearButton]="false" [showOperator]="false" [matchMode]="'contains'"
+            placeholder="Buscar por NRC" ariaLabel="Filtrar NRC"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="nombre_cliente" [showButtons]="false" [showMenu]="false"
+            [showApplyButton]="false" [showClearButton]="false" [showOperator]="false" [matchMode]="'contains'"
+            placeholder="Buscar por encargado" ariaLabel="Filtrar Encargado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="factura.proveedor.telefono" [showButtons]="false" [showMenu]="false"
+            [showApplyButton]="false" [showClearButton]="false" [showOperator]="false" [matchMode]="'contains'"
+            placeholder="Buscar por teléfono" ariaLabel="Filtrar Teléfono"></p-columnFilter>
+        </th>
+        <th></th>
+        <th *ngIf="tieneSolicitudesAprobadas()"></th>
+        <th *ngIf="tieneSolicitudesAprobadas()"></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <!-- Cuerpo de la Tabla con la clase 'uppercase' solo en las celdas -->
+    <ng-template pTemplate="body" let-solicitud>
+      <tr>
+        <td style="text-transform: uppercase;">{{ solicitud.factura.proveedor.razon_social }}</td>
+        <td style="text-transform: none;">{{ solicitud.factura.proveedor.correo_electronico }}</td>
+        <td style="text-transform: uppercase;">{{ solicitud.factura.proveedor.nrc }}</td>
+        <td style="text-transform: uppercase;">{{ solicitud.nombre_cliente }}</td>
+        <td style="text-transform: uppercase;">{{ solicitud.factura.proveedor.telefono }}</td>
+        <td style="text-transform: uppercase;">{{ solicitud.factura.monto | currency:'$' }}</td>
+        <td style="text-transform: uppercase;">{{ solicitud.subtotal | currency:'$' }}</td>
+        <td *ngIf="tieneSolicitudesAprobadas() || tieneSolicitudesDenegadas()"
+          [ngClass]="{'estado-verde': tieneSolicitudesAprobadas(), 'estado-rojo': tieneSolicitudesDenegadas()}">
+          {{solicitud.estado}}
+        </td>
+        <td *ngIf="tieneSolicitudesAprobadas()">
+          <p-tableCheckbox [value]="solicitud" *ngIf="tieneSolicitudesAprobadas()" class="checkbox"></p-tableCheckbox>
+          <!-- Checkbox para cada fila -->
+        </td>
+        <td>
+          <button pButton type="button" label="VER SOLICITUD" class="button-info"
+            (click)="verSolicitud(solicitud)"></button>
+        </td>
+      </tr>
+
+      <pre *ngIf="selectedSolicitudes.length > 0">{{ selectedSolicitudes | json }}</pre>
+    </ng-template>
+
+    <!-- Mensaje cuando no hay datos -->
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="tieneSolicitudesAprobadas() ? '11' : '9'" class="text-center"
+          style="text-transform: uppercase;">
+          No hay registros disponibles.
+        </td>
+      </tr>
+    </ng-template>
+
+
+    <!-- Footer del Paginador -->
+    <ng-template pTemplate="paginatorleft">
+      <div class="total-records">{{ solicitudes.length }} registros</div>
+    </ng-template>
+
+  </p-table>
+</div>

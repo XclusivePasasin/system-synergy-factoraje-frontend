@@ -1,0 +1,146 @@
+.container-panel {
+  margin: 2rem 4rem;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem 0;
+  position: relative; /* Para poder posicionar elementos relativos al contenedor */
+
+  /* Tarjetas */
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    padding: 20px;
+    width: 300px;
+    height: 140px;
+    box-sizing: border-box;
+
+    &.total {
+      background-color: #5a5af0;
+      color: white;
+      padding: 30px;
+      margin-bottom: 0px; /* Espacio entre la tarjeta principal y las inferiores */
+    }
+
+    &.approved,
+    &.pending {
+      background-color: #c8cedc; /* Gris claro */
+      color: #ffffff;
+    }
+
+    .card-value {
+      font-size: 2.3rem;
+      font-weight: bold;
+    }
+
+    .card-label {
+      font-size: 1.5rem;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  }
+
+  /* Línea vertical */
+  .vertical-line {
+    width: 4px;
+    height: 80px;
+    background-color: #5a5af0; 
+    margin: 0 auto;
+  }
+
+  /* Línea horizontal simulada con bordes redondeados */
+  .connection-simulator {
+    width: 50%;
+    height: 50px;
+    background-color: #ffffff;
+    border-top: 4px solid #5a5af0;
+    border-left: 4px solid #5a5af0;
+    border-right: 4px solid #5a5af0;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-top: 0;
+    position: relative;
+    z-index: -1; 
+  }
+
+  /* Grupo de tarjetas inferiores */
+  .card-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 960px; 
+    margin-top: -12px; 
+    box-sizing: border-box;
+  }
+
+  .card-group a {
+    text-decoration: none;
+    flex: 1;
+    max-width: 300px; 
+  }
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .container-panel {
+    margin: 2rem;
+  }
+
+  .dashboard {
+    .card {
+      width: 80%; 
+      max-width: 280px;
+    }
+
+    .connection-simulator {
+      width: 220px;
+    }
+
+    .card-group {
+      max-width: 460px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    /* En pantallas pequeñas, las tarjetas inferiores se apilan sin perder la idea del "mapa mental" */
+    .card-group {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .connection-simulator {
+      width: 180px;
+    }
+
+    /* Opcional: Ajustar tamaños de fuente y espaciados para mayor legibilidad en pantallas pequeñas */
+    .card {
+      height: auto;
+      .card-value {
+        font-size: 2rem;
+      }
+      .card-label {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .container-panel {
+    margin: 1rem;
+  }
+}

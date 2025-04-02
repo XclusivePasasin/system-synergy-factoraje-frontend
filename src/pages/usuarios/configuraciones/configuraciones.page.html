@@ -1,0 +1,63 @@
+<!-- Botón para regresar a lista de solicitudes -->
+<div class="detalle-solicitud-header-buttom" *ngIf="back">
+  <button pButton icon="pi pi-arrow-left" label="Regresar a Usuarios" class="p-button-rounded p-button-info no-bg-blue" (click)="regresarALaLista()"></button>
+</div>
+
+<div class="configuraciones-container">
+  <h2 class="title">{{edit ? 'Editar Información' : 'Crear usuario'}}</h2>
+
+  <div class="form-group">
+    <label for="correo">Correo</label>
+    <input pInputText id="correo" [(ngModel)]="correo" class="full-width" type="email" placeholder="Ej. example@clobi.com" [readonly]="edit" [style]="edit ? {'background-color': '#f5f7fb'} : {}"/>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input pInputText id="nombre" [(ngModel)]="nombre" class="full-width" type="text" placeholder="Ej. Juan Alberto"/>
+    </div>
+
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input pInputText id="apellido" [(ngModel)]="apellido" class="full-width" type="text" placeholder="Ej. Hernandez Pérez"/>
+    </div>
+  </div>
+
+  <!-- Selección de rol -->
+  <div class="form-group" *ngIf="!setting">
+    <label for="rol">Rol</label>
+    <p-dropdown
+      [options]="roles"
+      [(ngModel)]="selectedRole"
+      optionLabel="nombre"
+      placeholder="Seleccione un Rol"
+      class="full-width custom-dropdown">
+    </p-dropdown>
+  </div>
+
+   <div class="form-group" *ngIf="!setting" >
+    <label for="password">Modificar Contraseña (opcional)</label>
+    <div class="password-container">
+      <input
+        pInputText
+        id="password"
+        [(ngModel)]="password"
+        class="full-width"
+        [type]="passwordVisible ? 'text' : 'password'"
+        placeholder="Mín. 6 caracteres"
+      />
+      <i
+        class="pi"
+        [ngClass]="passwordVisible ? 'pi-eye-slash' : 'pi-eye'"
+        (click)="togglePasswordVisibility()"
+        style="cursor: pointer; margin-left: -30px;"
+      ></i>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button pButton label="Guardar" class="btn-modificar" [loading]="loading"  (click)="modificarInfo()" ></button>
+    <button pButton label="Restablecer Contraseña" class="btn-reestablecer" [loading]="loadingret" (click)="reestablecerPass()" *ngIf="!setting && edit"></button>
+  </div> 
+
+</div>

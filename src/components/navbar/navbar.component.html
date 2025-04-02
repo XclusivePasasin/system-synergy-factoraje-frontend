@@ -1,0 +1,51 @@
+<div class="navbar">
+  <!-- Menú y Breadcrumb -->
+  <div class="menu-and-breadcrumb">
+    <div class="menu-icon" (click)="onToggleSidebar()">
+      <i class="pi pi-bars"></i>
+    </div>
+
+    <div class="breadcrumb">
+      <span class="breadcrumb-item-first">{{ showBienvenido ? 'BIENVENIDO' : 'SINERGY' }}</span>
+      <ng-container *ngIf="!showBienvenido">
+        <ng-container *ngFor="let breadcrumb of breadcrumbs; let isLast = last">
+          <span class="breadcrumb-separator"><i class="pi pi-angle-right"></i></span>
+          <span class="breadcrumb-item" [ngClass]="{ 'clickable': !isLast }">
+            <span *ngIf="!isLast" [routerLink]="breadcrumb.routerLink">{{ breadcrumb.label }}</span>
+            <span *ngIf="isLast">{{ breadcrumb.label }}</span>
+          </span>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Información del usuario -->
+  <div class="user-info">
+    <!-- Detalles del usuario (solo en pantallas grandes) -->
+    <div class="user-details">
+      <div class="username">{{ fullName }}</div>
+      <div class="role">{{ role }}</div>
+    </div>
+
+    <!-- Avatar del usuario y el icono de menú desplegable -->
+    <div class="user-avatar-menu">
+      <div class="user-avatar">
+        <img src="assets/user.jpg" alt="User Avatar" />
+      </div>
+      <i class="pi pi-chevron-down dropdown-icon" (click)="toggleDropdown()"></i>
+
+      <!-- Menú desplegable -->
+      <div class="dropdown-menu" *ngIf="isDropdownOpen">
+        <ul>
+          <!-- Nombre y rol dentro del menú (ocultos en pantallas grandes, visibles en pantallas pequeñas) -->
+          <li class="dropdown-user-info">
+            <div class="username-dropdown">{{ fullName }}</div>
+            <div class="role-dropdown">{{ role }}</div>
+          </li>
+          <li (click)="navigateTo('ajustes')">Ajustes</li>
+          <li (click)="logout()">Cerrar Sesion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

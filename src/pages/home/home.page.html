@@ -1,0 +1,34 @@
+<div class="container-panel">
+  <app-filtros-panel (filtersChanges)="applyFilters($event)"></app-filtros-panel>
+  <div class="dashboard">
+    <!-- Tarjeta principal -->
+    <div class="card total">
+      <div class="card-value">{{ totalSolicitudes }}</div>
+      <div class="card-label">SOLICITUDES</div>
+    </div>
+
+    <!-- Conector vertical que baja desde la tarjeta principal -->
+    <div class="vertical-line"></div>
+
+    <!-- Simulación de línea horizontal con bordes redondeados -->
+    <div class="connection-simulator"></div>
+
+    <!-- Agrupación de las tarjetas inferiores -->
+    <div class="card-group">
+      <a class="card approved" [routerLink]="['/solicitudes/aprobadas']">
+        <div class="card-value">{{ aprobadas }}</div>
+        <div class="card-label">APROBADAS</div>
+      </a>
+
+      <a class="card pending" [routerLink]="['/solicitudes/sin-aprobar']">
+        <div class="card-value">{{ sinAprobar }}</div>
+        <div class="card-label">SIN APROBAR</div>
+      </a>
+
+      <a class="card pending" [routerLink]="['/solicitudes/denegadas']">
+        <div class="card-value">{{ denegadas }}</div>
+        <div class="card-label">DENEGADAS</div>
+      </a>
+    </div>
+  </div>
+</div>

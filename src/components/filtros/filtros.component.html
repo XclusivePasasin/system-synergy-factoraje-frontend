@@ -1,0 +1,51 @@
+<div class="filtros-container">
+  <input type="text" pInputText placeholder="Buscar" (keyup)="onKeyUpSearch($event)" />
+  <!-- Date Range Picker -->
+  <div *ngIf="!onlySearch" class="calendar-container">
+    <i class="pi pi-calendar-plus calendar-icon"></i>
+    <p-calendar
+      #calendar
+      [(ngModel)]="rangeDates"
+      selectionMode="range"
+      [readonlyInput]="true"
+      dateFormat="dd/mm/yy"
+      [showIcon]="false"
+      rangeSeparator=" - "
+      placeholder="{{ placeholder }}"
+      (onClear)="clearRangoTexto()"
+      [hideOnDateTimeSelect]="false"
+    >
+      <!-- Footer with custom buttons -->
+      <ng-template pTemplate="footer">
+        <div class="calendar-footer">
+          <button
+            type="button"
+            pButton
+            label="Cancelar"
+            class="p-button-secondary"
+            (click)="clearRangoTexto()"
+          ></button>
+          <button
+            type="button"
+            pButton
+            label="Escoger Fecha"
+            class="p-button-primary"
+            (click)="aplicarSeleccion();"
+          ></button>
+        </div>
+      </ng-template>
+    </p-calendar>
+  </div>
+
+    <!-- Botón Filtrar -->
+    <app-filtros-button *ngIf="!onlySearch" (abrirModal)="mostrarModal()"></app-filtros-button>
+
+    <!-- Botón Desembolsar -->
+    <app-desembolsar-button *ngIf="mostrarBotonDesembolsar"></app-desembolsar-button>
+
+    <!-- Modal Filtros Avanzados -->
+    <app-modal-filtros-avanzados
+      [mostrar]="mostrarModalFiltros"
+      (cerrar)="cerrarModal($event)"
+    ></app-modal-filtros-avanzados>
+  </div>

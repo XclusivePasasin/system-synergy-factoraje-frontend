@@ -1,0 +1,60 @@
+<div class="modal-container" [class.show]="mostrar">
+  <div class="modal-overlay" (click)="cerrarModal()"></div>
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Filtros avanzados</h2>
+      <button class="close-button" (click)="cerrarModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Input para buscar por nombre -->
+      <div class="input-container">
+        <input  [(ngModel)]="filtros.nombre_proveedor"
+          type="text"
+          placeholder="Buscar por nombre de proveedor"
+        />
+      </div>
+
+      <!-- Input para buscar por correo -->
+      <div class="input-container">
+        <input [(ngModel)]="filtros.email"
+          type="text"
+          placeholder="Buscar por correo de proveedor"
+        />
+      </div>
+
+      <!-- Input para buscar por NCR -->
+      <div class="input-container">
+        <input [(ngModel)]="filtros.nrc"
+          type="text"
+          placeholder="Buscar por NCR de proveedor"
+        />
+      </div>
+
+      <!-- Input para buscar por teléfono -->
+      <div class="input-container">
+        <input [(ngModel)]="filtros.telefono"
+          type="text"
+          placeholder="Buscar por teléfono de proveedor"
+        />
+      </div>
+
+      <!-- Input para buscar por número de factura -->
+      <div class="input-container">
+        <input  [(ngModel)]="filtros.no_factura"
+          type="text"
+          placeholder="Buscar por número de factura"
+        />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="secondary-button" (click)="limpiarFiltros()">
+        Limpiar filtros
+      </button>
+      <button class="primary-button" (click)="aplicarFiltros()">
+        Aplicar filtros
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,309 @@
+
+::ng-deep .usuarios-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fb;
+
+  height: 120px;
+}
+
+.filtros-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.new{
+  color: #5459EA;
+  font-weight: bold;
+  cursor: pointer;
+  i{
+    font-size: 12px;
+    margin-right: 3px;
+
+  }
+  span{
+    font-size: 14px;
+    margin-right: 50px;
+  }
+}
+
+/* Ajustar la tabla para usar todo el ancho y adaptarla a la pantalla */
+
+/* Tabla */
+::ng-deep p-table {
+  margin-top: 30px;
+  width: 100%;
+  overflow-x: auto; /* Permitir scroll horizontal */
+  display: block;
+  padding: 0 2rem;
+}
+
+/* Inputs de filtros con ancho completo */
+::ng-deep p-columnFilter input {
+  font-size: 0.75rem; /* Texto más pequeño */
+  padding: 0.3rem 0.4rem; /* Reducir padding */
+  height: 2rem; /* Altura estándar */
+  width: 95%; /* Ancho completo del contenedor */
+  margin: 0; /* Sin márgenes adicionales */
+  line-height: normal; /* Asegurar altura uniforme del texto */
+  border-radius: 4px; /* Bordes redondeados */
+  border: 1px solid #ccc; /* Borde estándar */
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+/* Placeholder ajustado para inputs */
+::ng-deep p-columnFilter input::placeholder {
+  font-size: 0.75rem; /* Tamaño pequeño para el texto del placeholder */
+  color: #adb5bd; /* Texto gris claro */
+}
+
+/* Consistencia en el tamaño de los filtros */
+::ng-deep p-columnFilter .p-column-filter {
+  border: none;
+  display: flex; /* Alinear correctamente los elementos */
+  align-items: center; /* Alinear verticalmente */
+}
+
+/* Encabezados de la tabla */
+::ng-deep p-table th {
+  padding: 0.8rem;
+  font-weight: bold;
+  font-size: 0.85rem; /* Tamaño reducido */
+  color: #00000093; /* Texto personalizado */
+  border: none;
+  white-space: nowrap; /* Mantener los encabezados en una sola línea */
+  background-color: #f5f7fb;
+}
+
+/* Celdas del cuerpo de la tabla */
+::ng-deep p-table td {
+  padding: 16px 24px;
+  text-align: center;
+  text-align: justify;
+  border: none;
+  font-weight: bold;
+  font-size: 0.8rem; /* Tamaño reducido */
+  word-wrap: break-word; /* Forzar ajuste de texto largo */
+  overflow-wrap: break-word; /* Compatibilidad con navegadores modernos */
+  white-space: normal; /* Permitir ajuste de texto */
+  max-width: 150px; /* Tamaño máximo de las columnas */
+  border-right: 1px solid #e9ecef74; /* Separar columnas con líneas */
+  border-bottom: 1px solid #e9ecef74; /* Separar columnas con líneas */
+  color: #898989;
+}
+
+/* Ajuste específico para la penúltima columna */
+::ng-deep p-table td:nth-last-child(2) {
+  word-wrap: break-word; /* Forzar ajuste de texto largo */
+  overflow-wrap: break-word; /* Compatibilidad con navegadores modernos */
+  white-space: normal; /* Permitir ajuste de texto */
+}
+
+/* Quitar el borde derecho de la última columna */
+::ng-deep p-table td:last-child {
+  border-right: none;
+}
+
+/* Botón personalizado */
+::ng-deep .button-info {
+  background-color: #fff ; /* Fondo gris claro */
+  border: 1px solid #5459ea;
+  color: #5459ea;
+  border-radius: 20px !important;
+  padding: 0.2rem 0.5rem !important; /* Reducir padding del botón */
+  font-size: 14px !important;
+  cursor: pointer;
+  height: 30px !important; /* Altura uniforme */
+  white-space: nowrap; /* Evita que el texto del botón se ajuste */
+  margin-left: 10px;
+
+  &:hover {
+    background-color: #5358e828; /* Color más oscuro al pasar el cursor */
+  }
+}
+::ng-deep .button-info-inactivo {
+  background-color: #E0E0E0 ; /* Fondo gris claro */
+  border: none;
+  color: #7e7e7e;
+  border-radius: 20px !important;
+  padding: 0.2rem 0.5rem !important; /* Reducir padding del botón */
+  font-size: 14px !important;
+  cursor: pointer;
+  height: 1.8rem !important; /* Altura uniforme */
+  width: 100px;
+  white-space: nowrap; /* Evita que el texto del botón se ajuste */
+
+  &:hover {
+    background-color: #5459ea; /* Color más oscuro al pasar el cursor */
+    color: white;
+  }
+}
+::ng-deep .button-info-activo {
+  background-color: #5459ea ; /* Fondo gris claro */
+  border: none;
+  color: #fff;
+  border-radius: 20px !important;
+  padding: 0.2rem 0.5rem !important; /* Reducir padding del botón */
+  font-size: 14px !important;
+  cursor: pointer;
+  height: 1.8rem !important; /* Altura uniforme */
+  width: 100px;
+  white-space: nowrap; /* Evita que el texto del botón se ajuste */
+}
+/* Estilo del contenedor del paginador */
+::ng-deep .p-paginator {
+  display: flex; /* Asegurar que el contenedor use Flexbox */
+  flex-direction: row; /* Forzar la disposición horizontal */
+  justify-content:flex-end; /* Centrar horizontalmente el contenido */
+  align-items: center; /* Alinear verticalmente los elementos */
+  padding: 0.5rem; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-top: 1rem; /* Espaciado superior */
+}
+
+/* Botones de navegación (anterior/siguiente) */
+::ng-deep .p-paginator .p-paginator-prev,
+::ng-deep .p-paginator .p-paginator-next {
+  background-color: #f8f9fa; /* Fondo claro */
+  color: #495057; /* Texto oscuro */
+  border-radius: 50%; /* Botón circular */
+  width: 2rem; /* Tamaño uniforme */
+  height: 2rem; /* Tamaño uniforme */
+  display: flex; /* Centrar contenido */
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem; /* Tamaño del texto */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Animación suave */
+}
+
+::ng-deep .p-paginator .p-paginator-prev:hover,
+::ng-deep .p-paginator .p-paginator-next:hover {
+  background-color: #5468ff; /* Fondo azul oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Botones de página */
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  background-color: #f8f9fa; /* Fondo claro */
+  color: #495057; /* Texto oscuro */
+  font-size: 0.9rem; /* Tamaño del texto */
+  font-weight: normal;
+  border: 1px solid #e0e0e0; /* Borde claro */
+  border-radius: 4px; /* Bordes ligeramente redondeados */
+  width: 1rem; /* Tamaño uniforme */
+  height: 2rem; /* Tamaño uniforme */
+  display: flex; /* Centrar contenido */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Animación suave */
+  margin: 0; /* Quitar márgenes adicionales */
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: #e0e0ff; /* Fondo azul claro */
+  color: #5468ff; /* Texto azul oscuro */
+  border-color: #5468ff; /* Borde azul oscuro */
+}
+
+/* Página activa */
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #5468ff; /* Fondo azul oscuro */
+  color: #ffffff; /* Texto blanco */
+  font-weight: bold;
+}
+
+/* Puntos suspensivos (elipsis) */
+::ng-deep .p-paginator .p-paginator-ellipsis {
+  color: #adb5bd; /* Gris claro */
+  font-size: 1rem; /* Tamaño del texto */
+  margin: 0; /* Quitar márgenes adicionales */
+}
+
+/* Ajustes generales del contenedor interno */
+::ng-deep .p-paginator .p-paginator-pages {
+  display: flex; /* Asegurar disposición horizontal */
+  flex-wrap: nowrap; /* Evitar que los elementos salten de línea */
+  align-items: center; /* Alinear verticalmente */
+  gap: 0.5rem; /* Espaciado entre los elementos */
+}
+
+.total-records
+{
+  color: #898989;
+}
+
+/* Estilos Responsivos
+   Ajustes para pantallas pequeñas (por ejemplo, max-width: 768px) */
+   @media (max-width: 768px) {
+    ::ng-deep .usuarios-content {
+      height: 10rem;
+    }
+
+    .filtros-container {
+      /* Cambiamos de fila a columna en pantallas pequeñas */
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+
+      .new {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+
+        span {
+          /* Quitar espacio extra en pantallas pequeñas */
+          margin-right: 0;
+        }
+      }
+    }
+
+    /* Reducir padding lateral en la tabla */
+    ::ng-deep p-table {
+      padding: 0 1rem;
+    }
+
+    /* Reducir el tamaño de fuente y padding en encabezados y celdas */
+    ::ng-deep p-table th,
+    ::ng-deep p-table td {
+      font-size: 0.75rem;
+      padding: 0.5rem;
+    }
+
+      /* Ajustar el paginador en pantallas pequeñas */
+      ::ng-deep .p-paginator {
+        padding: 0.3rem;
+        margin-top: 0.5rem;
+      }
+
+      ::ng-deep .p-paginator .p-paginator-prev,
+      ::ng-deep .p-paginator .p-paginator-next {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.8rem;
+      }
+
+      ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+        width: auto; /* Permitir que se adapte */
+        padding: 0.3rem;
+        font-size: 0.75rem;
+        height: auto;
+      }
+
+      .total-records {
+        font-size: 0.7rem; /* Texto más pequeño */
+      }
+
+      /* Permitir scroll horizontal sin cortar contenido */
+      ::ng-deep p-table {
+        overflow-x: auto;
+      }
+  }

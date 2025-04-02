@@ -1,0 +1,160 @@
+<!-- Botón para regresar a lista de solicitudes -->
+<div class="detalle-solicitud-header-buttom">
+  <button
+    pButton
+    icon="pi pi-arrow-left"
+    label="Regresar"
+    class="p-button-rounded p-button-info no-bg-blue"
+    (click)="regresarALaLista()"
+  ></button>
+</div>
+
+<div class="detalle-solicitud-container">
+
+  <div class="grid">
+    <div class="col-12">
+      <div class="card custom-height">
+        <p-card header="">
+          <div class="grid">
+            <!-- Columna de Rol: 100% en pantallas pequeñas, 4/12 en medianas y superiores -->
+            <div class="col-12 md:col-4">
+              <p-card header="Rol" [style]="{ 'max-height': '400px' }">
+                <div class="flex flex-column gap-2">
+                  <label for="username">Nombre del rol</label>
+                  <input
+                    [(ngModel)]="this.nombre"
+                    pInputText
+                    id="username"
+                    class="full-width"
+                    aria-describedby="username-help"
+                  />
+                  <label for="descripcion">Descripcion</label>
+                  <textarea
+                    [(ngModel)]="this.descripcion"
+                    style="width: 100%; height: 100px;"
+                    id="descripcion"
+                    pInputTextarea
+                  ></textarea>
+                  <button
+                    style="width: 100px; margin-top: 10px;"
+                    pButton
+                    (click)="guardarRol()"
+                  >
+                    Guardar
+                  </button>
+                </div>
+              </p-card>
+            </div>
+
+            <!-- Columna de Permisos: 100% en pantallas pequeñas, 8/12 en medianas y superiores -->
+            <div class="col-12 md:col-8">
+              <p-card header="Permisos">
+                <!-- Contenido de Permisos -->
+                <div class="card">
+                  <p-tabView>
+                    <p-tabPanel header="Menús">
+                      <div class="w-full h-12">
+                        <p>Selecciona el menu que deseas asignar al rol</p>
+                      </div>
+                      <div class="grid">
+                        <!-- Contenedor de la tabla con scroll horizontal en pantallas pequeñas -->
+                        <div class="col-12 overflow-x-auto max-h-400 block">
+                          <table border="1">
+                            <thead>
+                              <tr>
+                                <th>Menu</th>
+                                <th>ASIGNADO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <ng-container *ngFor="let parent of menus">
+                                <ng-container
+                                  *ngTemplateOutlet="menuTemplate; context: { parent: parent }"
+                                ></ng-container>
+                              </ng-container>
+                            </tbody>
+                          </table>
+
+                          <ng-template #menuTemplate let-parent="parent">
+                            <ng-container *ngFor="let child of parent.children">
+                              <tr *ngIf="child.description === 'SUBMENU' || child.description === 'DETALLE'">
+                                <td>
+                                  <strong style="font-size: 16px; margin-right: 10px;">{{ parent.menu }}</strong>
+                                  <i class="pi pi-angle-right"></i>
+                                  <a href="#" style="color: #176d70; margin-left: 10px;">{{ child.menu }}</a>
+                                </td>
+                                <td>
+                                  <p-inputSwitch [(ngModel)]="child.checked"></p-inputSwitch>
+                                </td>
+                              </tr>
+
+                              <ng-container *ngIf="child.children && child.children.length > 0">
+                                <ng-container
+                                  *ngTemplateOutlet="menuTemplate; context: { parent: child }"
+                                ></ng-container>
+                              </ng-container>
+                            </ng-container>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Opciones">
+                      <div style="width: 100%; height: 70px;">
+                        <p>Selecciona el menu asignado para listar las acciones</p>
+                        <select (change)="filtrarAcciones($event)">
+                          <option disabled selected>Seleccionar</option>
+                          <ng-container *ngFor="let parent of menus">
+
+                            <option value="{{parent.id}}" *ngIf="parent.checked && parent.id != 1 && parent.id != 8">{{parent.menu}}</option>
+
+
+                          </ng-container>
+                        </select>
+                      </div>
+                      <div class="grid">
+                        <div class="col-12 overflow-x-auto max-h-400 block">
+                          <table border="1">
+                            <thead>
+                              <tr>
+                                <th>Acción</th>
+                                <th>ESTADO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let accion of accionesFiltradas">
+                                <td>{{ accion.menu }}</td>
+                                <td>
+                                  <p-inputSwitch [(ngModel)]="accion.checked"></p-inputSwitch>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                          <ng-template #menuTemplate let-parent="parent">
+                            <ng-container *ngFor="let child of parent.children">
+                              <tr *ngIf="child.description === 'ACCION'">
+                                <td>
+                                  {{ child.menu }}
+                                </td>
+                              </tr>
+
+                              <ng-container *ngIf="child.children && child.children.length > 0">
+                                <ng-container
+                                  *ngTemplateOutlet="menuTemplate; context: { parent: child }"
+                                ></ng-container>
+                              </ng-container>
+                            </ng-container>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </p-tabPanel>
+                  </p-tabView>
+                </div>
+              </p-card>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

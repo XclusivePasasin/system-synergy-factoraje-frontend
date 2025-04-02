@@ -1,0 +1,4 @@
+<div class="solicitudes-content">
+    <app-filtros (filtersChanges)="applyFilters($event)"></app-filtros>
+    <app-tabla-desembolsos [desembolso]="desembolsos" (onPageChange)="onPageChange($event)"></app-tabla-desembolsos>
+</div>

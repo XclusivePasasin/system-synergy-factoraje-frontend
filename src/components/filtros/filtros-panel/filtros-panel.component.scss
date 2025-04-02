@@ -1,0 +1,125 @@
+
+  .container-filtro-panel h3{
+    font-size: 1rem;
+    color: #5459ea;
+    margin-left: 0.6rem;
+  }
+
+  .calendar-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .calendar-icon {
+      position: absolute;
+      z-index: 10;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #a0a0a0;
+      font-size: 1.2rem;
+      background-color: #f5f5f5;
+    }
+
+    ::ng-deep .p-inputtext {
+      width: 16rem;
+      padding: 0.5rem 1rem 0.5rem 2.5rem;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #4b5563;
+      background-color: #f5f5f5;
+
+      &::placeholder {
+        color: #a0a0a0;
+      }
+    }
+
+    ::ng-deep .p-datepicker {
+      width: 20rem;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+      .p-datepicker-header {
+        background-color: #ffffff;
+        color: #333333;
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-bottom: 1px solid #e4e4e7;
+        text-align: center;
+      }
+
+      .p-datepicker-calendar {
+        font-size: 0.9rem;
+        table-layout: fixed; /* Ensures consistent column widths */
+        width: 100%; /* Full-width table */
+
+        td,
+        th {
+          text-align: center;
+          vertical-align: middle;
+          padding: 0.5rem;
+          width: 2rem; /* Fixed width for all cells */
+          height: 2rem; /* Fixed height for all cells */
+          box-sizing: border-box; /* Ensures padding doesn't affect size */
+          transition: background-color 0.3s, color 0.3s; /* Smooth hover effects */
+        }
+
+        span:hover {
+          background-color: #5459ea; /* Hover background color */
+          color: #ffffff;
+          border-radius: 5px !important;/* Rounded day cells */
+        }
+
+        .p-datepicker-current-day {
+          border-color: #5459ea; /* Highlight for selected day */
+          color: #5459ea;
+          font-weight: bold;
+        }
+
+        .p-datepicker-today {
+          color: #555555;
+          background-color: #ffffff;
+          border-radius: 50%;
+        }
+
+        .p-datepicker-other-month {
+          color: #b0b0b0; /* Dimmed color for days outside current month */
+          pointer-events: none; /* Disable interaction for non-month days */
+        }
+      }
+
+      .calendar-footer {
+        display: flex;
+        font-weight: normal;
+        justify-content: space-between;
+        padding: 0.5rem;
+
+        .p-button-secondary {
+          background-color: #e7e7e7;
+          color: #333;
+          border: none;
+          font-size: 0.8rem;
+          border-radius: 6px;
+          padding: 0.5rem 1rem;
+
+          &:hover {
+            background-color: #d6d6d6;
+          }
+        }
+
+        .p-button-primary {
+          background-color: #5459ea;
+          color: #ffffff;
+          border: none;
+          font-size: 0.8rem;
+          border-radius: 6px;
+          padding: 0.5rem 1rem;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+      }
+    }
+  }

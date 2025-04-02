@@ -1,0 +1,209 @@
+.detalle-solicitud-header-buttom {
+  margin: 1rem;
+}
+
+.detalle-solicitud-container {
+  padding: 20px;
+  background-color: #ffffff;
+  margin: 2rem 15rem;
+}
+
+/* Estilo para el encabezado de la sección de cliente */
+.detalle-solicitud-header {
+  margin-bottom: 20px;
+}
+
+.detalle-solicitud-header h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.detalle-solicitud-header p {
+  font-size: 1.1rem;
+  padding-bottom: 0.2rem;
+  margin-left: 8rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Estilos para la tabla */
+::ng-deep p-table th {
+  background-color: #f5f7fb;
+  color: #686868;
+  padding: 0.8rem 1.5rem 0.8rem 8rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+::ng-deep p-table td {
+  color: #898989;
+  text-align: left;
+  padding: 0.8rem 1.5rem 0.8rem 8rem;
+  font-size: 1rem;
+  border-top: 1px solid #f6f6f6;
+}
+
+/* Ancho de las columnas */
+::ng-deep p-table th:first-child,
+::ng-deep p-table td:first-child {
+  width: 50%;
+}
+
+::ng-deep p-table th:nth-child(2),
+::ng-deep p-table td:nth-child(2) {
+  width: 50%;
+}
+
+/* Colores de fondo de las columnas */
+::ng-deep p-table td.concepto-column {
+  background-color: #fcfcfc;
+}
+
+::ng-deep p-table td.valor-column {
+  background-color: #ffffff;
+}
+
+/* Botón "Agregar comentario" */
+.no-bg-blue {
+  background: none;
+  color: #2B3674;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+::ng-deep .no-bg-blue span {
+  font-size: 0.9rem;
+}
+
+/* Centrado del botón de agregar comentario */
+.detalle-solicitud-footer.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Botones "Aceptar" y "Denegar" */
+.detalle-solicitud-footer.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.p-button-green {
+  background-color: #73B16B;
+  border: none;
+}
+
+.p-button-red {
+  background-color: #D23230;
+  border: none;
+}
+
+.p-button-green:hover {
+  background-color: #6fc563;
+}
+
+.p-button-red:hover {
+  background-color: #f2514e;
+}
+
+/* Botones dentro del modal */
+.p-footer button {
+  margin: 0 0.5rem;
+}
+
+/* Contenido del modal */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 1rem;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.p-dialog .p-dialog-header {
+  text-align: center;
+  font-weight: bold;
+}
+
+.p-dialog .p-dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Sección de la parte inferior (aprobador y fecha) */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  color: #2B3674;
+}
+
+.bottom p {
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.2rem 0;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .detalle-solicitud-container {
+    margin: 1rem; /* Reducir márgenes en pantallas pequeñas */
+    padding: 1rem; /* Menos padding para adaptarse a pantallas pequeñas */
+  }
+
+  .detalle-solicitud-header p {
+    margin-left: 0; /* Quitar margen lateral en pantallas pequeñas */
+    text-align: center; /* Centrar el texto del subtítulo */
+  }
+
+  /* Ajustar la tabla para pantallas pequeñas */
+  ::ng-deep p-table th,
+  ::ng-deep p-table td {
+    padding: 0.5rem 0.5rem; /* Reducir padding interno */
+  }
+
+  ::ng-deep p-table th {
+    padding-left: 1rem; /* Menos espacio a la izquierda */
+  }
+
+  ::ng-deep p-table td {
+    padding-left: 1rem; /* Menos espacio a la izquierda */
+  }
+
+  /* Ajustar el tamaño y la disposición de los botones */
+  .detalle-solicitud-footer.centered,
+  .detalle-solicitud-footer.acciones {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Ajustar el modal (opcional, si se requiere) */
+  .p-dialog .p-dialog-content {
+    padding: 0.5rem;
+  }
+
+  /* Ajustar texto inferior */
+  .bottom p {
+    font-size: 0.8rem; /* Un poco más pequeño en pantallas pequeñas */
+  }
+}

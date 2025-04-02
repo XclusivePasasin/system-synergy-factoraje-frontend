@@ -1,0 +1,16 @@
+
+::ng-deep .solicitudes-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fb;
+  height: 148px;
+}
+
+@media (max-width: 768px) {
+  ::ng-deep .solicitudes-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f7fb;
+    height: 20rem;
+  }
+}

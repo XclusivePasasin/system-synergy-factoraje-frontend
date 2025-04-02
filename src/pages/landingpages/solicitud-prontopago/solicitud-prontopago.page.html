@@ -1,0 +1,131 @@
+<div *ngIf="!facturaNotFound && !enviada && validarEstadoPendinte()" class="container">
+  <div class="proveedor-name">
+    <h3><span>CLIENTE:</span> {{facturaProveedor.nombre_proveedor}}</h3>
+  </div>
+  <h5 class="detalle-cesion">Detalle de Cesión de Factoraje</h5>
+  <p-table [value]="invoiceDetails" class="invoice-table" styleClass="p-datatable-gridlines p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Concepto</th>
+        <th>Monto</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-detail>
+      <tr>
+        <td style="font-weight: 700;">{{ detail.concept }}</td>
+        <td>{{ detail.valor }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="terms-check">
+    <p-checkbox [(ngModel)]="termsAccepted" binary="true" label="Acepto Términos y Condiciones"></p-checkbox>
+  </div>
+
+  <button pButton label="SOLICITAR" class="solicitar-btn p-button-rounded" [disabled]="!termsAccepted"
+    (click)="showModal()"></button>
+
+  <p class="terms-p">
+    *Restricciones y condiciones aplican. La aceptación del pronto pago implica la aceptación del 18% de interés anual
+    estableci
+    do y sus variaciones según el plazo de días restantes al vencimiento de la factura. El monto final recibido será
+    calculado con
+    base en el descuento aplicado y no se incluyen costos adicionales. Synergy Financial Corp se reserva el derecho de
+    aprobar o
+    rechazar solicitudes de pronto pago conforme a sus políticas internas.
+  </p>
+  <p-dialog [(visible)]="modalVisible" [modal]="true" resizable="false" [style]="{ width: '30rem' }" showHeader="false"
+    styleClass="custom-dialog" [contentStyle]="contentStyle">
+    <div class="modal-content">
+      <br>
+      <div>
+        <button type="button" icon="pi pi-times" class="btn-close p-button-rounded p-button-text "
+          (click)="modalVisible = false">
+          X
+        </button>
+        <br>
+        <span class="datos-solicitante">Datos del Solicitante</span>
+      </div>
+      <div class="field" style="margin-top: 40px;">
+        <label for="name">Nombre del Solicitante</label>
+        <input pInputText id="name" [(ngModel)]="applicant.name" [class.ng-invalid]="isFormInvalid && !applicant.name"
+          required />
+        <br>
+        <small *ngIf="isFormInvalid && !applicant.name" class="p-error">El nombre es requerido.</small>
+      </div>
+      <div class="field">
+        <label for="role">Cargo</label>
+        <input pInputText id="role" [(ngModel)]="applicant.role" [class.ng-invalid]="isFormInvalid && !applicant.role"
+          required />
+        <br>
+        <small *ngIf="isFormInvalid && !applicant.role" class="p-error">El rol es requerido.</small>
+      </div>
+      <div class="field">
+        <label for="email">Correo Electrónico</label>
+        <input pInputText id="email" [(ngModel)]="applicant.email"
+          [class.ng-invalid]="isFormInvalid && !isValidEmail(applicant.email)" required />
+        <br>
+        <small *ngIf="isFormInvalid && !isValidEmail(applicant.email)" class="p-error">
+          Ingresa un correo electrónico válido.
+        </small>
+      </div>
+      <br>
+      <div class="btn-aceptar-wrap">
+        <button pButton label="ENVIAR" [loading]="loading" (click)="send()"></button>
+      </div>
+      <br>
+    </div>
+  </p-dialog>
+
+  <div class="card flex justify-content-center">
+    <p-toast />
+  </div>
+</div>
+
+<!-- Cuando la solicitud ya se ha enviado -->
+<div *ngIf="validarEstadoEnviada()" class="container" style="margin-top: 100px;">
+  <img src="https://cdn-icons-png.flaticon.com/512/4697/4697876.png" alt="Success Icon">
+  <h1>¡Solicitud Enviada!</h1>
+  <p>Gracias por enviar tu solicitud de cesión de factoraje. Nos pondremos en contacto contigo a través de correo
+    electrónico para informarte si tu solicitud ha sido aprobada o no.</p>
+  <p>Por favor, verifica tu bandeja de entrada o tu carpeta de spam en las próximas 24 horas.</p>
+  <!-- <a href="#" class="button">Volver al Inicio</a> -->
+</div>
+
+<!-- Vista cuando la solicitud ha sido aprobada -->
+<div *ngIf="validarEstadoAprobada()" class="container">
+  <div class="success-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="Success Icon" style="margin-top: 100px;">
+    <h1>¡Solicitud Aprobada!</h1>
+    <p>Felicidades, tu solicitud de cesión de factoraje ha sido aprobada. El pago será procesado y recibirás el monto acordado.</p>
+  </div>
+</div>
+
+<!-- Vista cuando la solicitud ha sido denegada -->
+<div *ngIf="validarEstadoDenegada()" class="container">
+  <div class="errord-container">
+    <img src="https://cdn-icons-png.flaticon.com/128/1113/1113253.png" alt="Success Icon" style="margin-top: 100px;">
+    <h1>Solicitud Denegada</h1>
+    <p>Lamentablemente, tu solicitud de cesión de factoraje ha sido denegada.</p>
+  </div>
+</div>
+
+<!-- Vista cuando la solicitud ha caducado -->
+<div *ngIf="validarEstadoCaducada()" class="container">
+  <div class="warning-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/10755/10755029.png" alt="Success Icon" style="margin-top: 100px;">
+    <h1>Solicitud Expirada</h1>
+    <p>Tu solicitud para aplicar a pronto pago ha caducado.</p>
+  </div>
+</div>
+
+<!-- En dado caso que no encuentre la factura -->
+<div *ngIf="facturaNotFound" class="container">
+  <div class="error-container">
+    <div class="error-card">
+      <h1>❌ Error</h1>
+      <p>No pudimos encontrar la factura.</p>
+      <!-- <a href="/" class="btn">Volver al Inicio</a> -->
+    </div>
+  </div>
+</div>

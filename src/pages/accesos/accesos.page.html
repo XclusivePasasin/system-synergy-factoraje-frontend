@@ -1,0 +1,62 @@
+<div class="usuarios-content">
+  <div class="filtros-container">
+    <app-filtros [onlySearch]="true" (onSearch)="dt2.filterGlobal($event, 'contains')">
+    </app-filtros>
+    <div class="new" (click)="gotoEdit('0')">
+      <i class="pi pi-plus"></i>
+      <span>Crear nuevo rol</span>
+    </div>
+  </div>
+
+
+  <div class="card tabla-content">
+    <p-table #dt2 [value]="roles" [scrollable]="true" scrollHeight="60vh" dataKey="id" [rows]="10"
+      [loading]="loading" [paginator]="true" [globalFilterFields]="['nombres', 'apellidos', 'cargo']"
+      [tableStyle]="{ 'min-width': '75rem' }">
+      <!-- Encabezados con Filtros -->
+      <ng-template pTemplate="header">
+        <tr class="custom-header-row">
+          <th>Nombre del rol</th>
+          <th>Descripción</th>
+          <th>Acción</th>
+        </tr>
+      </ng-template>
+
+      <!-- Cuerpo de la Tabla con la clase 'uppercase' solo en las celdas -->
+      <ng-template pTemplate="body" let-rol>
+        <tr>
+          <td style="text-transform: uppercase;">{{ rol.nombre }} </td>
+          <td style="text-transform: none;">{{ rol.descripcion }}</td>
+          <td>
+            <button pButton type="button" class="button-info" (click)="gotoEdit(rol.id_rol)">Editar</button>
+            <button pButton type="button" class="button-info" (click)="ejecutarAccion(rol)">Eliminar</button>
+          </td>
+
+        </tr>
+      </ng-template>
+
+      <!-- Mensaje cuando no hay datos -->
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8" class="text-center" style="text-transform: uppercase;">No hay registros disponibles.</td>
+        </tr>
+      </ng-template>
+
+      <!-- Footer del Paginador -->
+      <ng-template pTemplate="paginatorleft">
+        <div class="total-records">{{ roles.length }} registros</div>
+      </ng-template>
+
+    </p-table>
+  </div>
+  <!-- Confirmación de acción (Eliminar rol) -->
+  <p-dialog [header]="'Eliminar rol'" [(visible)]="modalAccionVisible"
+  [style]="{width: '30vw'}">
+  <p>¿Está seguro de que desea ejecutar esta acción?</p>
+  <p-footer>
+    <button pButton [loading]="loading" label="Sí" icon="pi pi-check" class="p-button-success"
+      (click)="deleteRole()"></button>
+    <button pButton label="No" icon="pi pi-times" class="p-button-danger" (click)="modalAccionVisible = false;"></button>
+  </p-footer>
+</p-dialog>
+</div>

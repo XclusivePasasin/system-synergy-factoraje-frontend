@@ -1,0 +1,361 @@
+/* Estilos base para pantallas grandes (diseño original) */
+
+/* Contenedor de la tabla */
+.card.tabla-content {
+    width: 100%;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+/* Tabla */
+::ng-deep p-table {
+    width: 100%;
+    overflow-x: auto;
+    /* Permitir scroll horizontal en pantallas más pequeñas */
+    display: block;
+    padding: 2;
+}
+
+/* Inputs de filtros con ancho completo */
+::ng-deep p-columnFilter input {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.4rem;
+    height: 2rem;
+    width: 95%;
+    margin: 0;
+    line-height: normal;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+/* Placeholder de inputs */
+::ng-deep p-columnFilter input::placeholder {
+    font-size: 0.75rem;
+    color: #adb5bd;
+}
+
+/* Ajustar el contenedor del filtro */
+::ng-deep p-columnFilter .p-column-filter {
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+/* Encabezados de la tabla */
+::ng-deep p-table th {
+    padding: 0.8rem;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #00000093;
+    border: none;
+    white-space: nowrap;
+    background-color: #f5f7fb;
+}
+
+/* Celdas del cuerpo de la tabla */
+::ng-deep p-table td {
+    padding: 16px 24px;
+    text-align: center;
+    text-align: justify;
+    border: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 150px;
+    border-right: 1px solid #e9ecef74;
+    border-bottom: 1px solid #e9ecef74;
+    color: #898989;
+}
+
+/* Ajuste para penúltima columna, si es necesario */
+::ng-deep p-table td:nth-last-child(2) {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Quitar borde derecho de la última columna */
+::ng-deep p-table td:last-child {
+    border-right: none;
+}
+
+/* Botón personalizado */
+::ng-deep .button-info {
+    background-color: #c8cedc;
+    border: none;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 20px !important;
+    padding: 0.2rem 0.5rem !important;
+    font-size: 0.6rem !important;
+    cursor: pointer;
+    height: 1.5rem !important;
+    white-space: nowrap;
+
+    &:hover {
+        background-color: #5459ea;
+    }
+}
+
+/* Estilo del paginador */
+::ng-deep .p-paginator {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Botones anterior/siguiente del paginador */
+::ng-deep .p-paginator .p-paginator-prev,
+::ng-deep .p-paginator .p-paginator-next {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+::ng-deep .p-paginator .p-paginator-prev:hover,
+::ng-deep .p-paginator .p-paginator-next:hover {
+    background-color: #5468ff;
+    color: #ffffff;
+}
+
+/* Botones de página */
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-size: 0.9rem;
+    font-weight: normal;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    width: 1rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+    background-color: #e0e0ff;
+    color: #5468ff;
+    border-color: #5468ff;
+}
+
+/* Página activa */
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background-color: #5468ff;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Elipsis */
+::ng-deep .p-paginator .p-paginator-ellipsis {
+    color: #adb5bd;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Contenedor de las páginas del paginador */
+::ng-deep .p-paginator .p-paginator-pages {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Texto de total de registros */
+.total-records {
+    color: #898989;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+
+    .card.tabla-content {
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Reducir el padding interno de las celdas en pantallas pequeñas */
+    ::ng-deep p-table td,
+    ::ng-deep p-table th {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        /* Reducir el tamaño de la fuente en pantallas pequeñas */
+    }
+
+    /* Ajustar los filtros */
+    ::ng-deep p-columnFilter input {
+        width: 100%;
+        /* En pantallas pequeñas usar todo el ancho */
+        padding: 0.2rem;
+        /* Reducir padding aún más */
+        font-size: 0.7rem;
+        /* Texto aún más pequeño */
+    }
+
+    /* El botón VER SOLICITUD más pequeño en pantallas pequeñas */
+    ::ng-deep .button-info {
+        padding: 0.1rem 0.3rem !important;
+        font-size: 0.5rem !important;
+        height: 1.2rem !important;
+    }
+
+    /* Ajustar el paginador en pantallas pequeñas */
+    ::ng-deep .p-paginator {
+        padding: 0.3rem;
+        margin-top: 0.5rem;
+    }
+
+    ::ng-deep .p-paginator .p-paginator-prev,
+    ::ng-deep .p-paginator .p-paginator-next {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+        width: auto;
+        /* Permitir que se adapte */
+        padding: 0.3rem;
+        font-size: 0.75rem;
+        height: auto;
+    }
+
+    .total-records {
+        font-size: 0.7rem;
+        /* Texto más pequeño */
+    }
+
+    /* Permitir scroll horizontal sin cortar contenido */
+    ::ng-deep p-table {
+        overflow-x: auto;
+    }
+}
+
+.estado-verde {
+    margin-top: 10px;
+    color: #8BDD69;
+    background-color: #E1F6D9;
+    padding: 0.5rem;
+    border-radius: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.estado-rojo {
+    margin-top: 10px;
+    color: #dd6969;
+    background-color: #f6d9d9;
+    padding: 0.5rem;
+    border-radius: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+
+.title-checkbox {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #5459EA;
+}
+
+.checkbox {
+    margin-left: 50px;
+}
+
+// Estilos personalizados para las columnas telefono. y nrc
+::ng-deep p-table th:nth-child(5),
+::ng-deep p-table td:nth-child(5) {
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+::ng-deep p-table th:nth-child(3),
+::ng-deep p-table td:nth-child(3) {
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Reducir el tamaño del input para NRC */
+::ng-deep p-columnFilter input[placeholder='Buscar por NRC'] {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    width: 107px;
+}
+
+/* Reducir el tamaño del input para Teléfono */
+::ng-deep p-columnFilter input[placeholder='Buscar por teléfono'] {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    width: 145px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Este estilo es unicamente cuando estamos en las pantallas aprobadas
+.aprobadas-estilos ::ng-deep p-table th:nth-child(3),
+.aprobadas-estilos ::ng-deep p-table td:nth-child(3),
+.aprobadas-estilos ::ng-deep p-table th:nth-child(5),
+.aprobadas-estilos ::ng-deep p-table td:nth-child(5) {
+    width: 110px;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.aprobadas-estilos ::ng-deep p-table th:nth-child(4),
+.aprobadas-estilos ::ng-deep p-table td:nth-child(4) {
+    width: 140px;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.aprobadas-estilos ::ng-deep p-columnFilter input[placeholder='Buscar por NRC'],
+.aprobadas-estilos ::ng-deep p-columnFilter input[placeholder='Buscar por teléfono'],
+.aprobadas-estilos ::ng-deep p-columnFilter input[placeholder='Buscar por encargado'] {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.aprobadas-estilos ::ng-deep p-columnFilter input[placeholder='Buscar por NRC'] {
+    width: 107px;
+}
+
+.aprobadas-estilos ::ng-deep p-columnFilter input[placeholder='Buscar por teléfono'] {
+    width: 100px;
+}
+
+.aprobadas-estilos ::ng-deep p-columnFilter input[placeholder='Buscar por encargado'] {
+    width: 180px;
+}
